@@ -4,7 +4,6 @@ namespace InterfacePractice
 {
     public class Classroom
     {
-        //adding a new comment
         //fields:
         List<Student> classroom;
         //end of fields^
