@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace InterfacePractice
 {
-    public class Student
+    public class Student : Person
     {
         //fields:
         private string _name;
@@ -14,9 +14,8 @@ namespace InterfacePractice
         //constructors:
 
         //new Student must have name, ident and Birthdate
-        public Student(string name, Date birthday, int ident){
+        public Student(string name, Date birthday, int ident) : base(name, birthday){
             _name = name;
-            Birthday = birthday;
             Ident = ident;
 
             grades = new List<double>();
@@ -24,22 +23,6 @@ namespace InterfacePractice
         //end of constructors^
 
         //properties:
-        protected string Name 
-        { 
-            get
-            {
-                return _name;
-            } 
-            set{
-                //name can only be letters
-                if (Regex.IsMatch(value, @"^[a-zA-Z]+$"))
-                {
-                    _name = value;
-                }
-            }
-        }
-
-        public Date Birthday {get; set;}
         public int Ident { get; }
         //end of properties^
 
@@ -90,6 +73,7 @@ namespace InterfacePractice
             return grades.Count == 0 ? 0 : sum / grades.Count;
         }
 
+        //adds single grade to Student object
         public void AddGrade(double grade)
         {
             grades.Add(grade);
@@ -104,9 +88,10 @@ namespace InterfacePractice
             }
         }
 
+        //overrides ToString method to include all relevant data about student
         public override string ToString()
         {
-            return "Student name: " + Name + ", id#: " + Ident + ", Birthday: " + Birthday + ", Current Grade: " + GetCurrLetterGrade() + ".";
+            return Name;
         }
 
         //end of methods^
